@@ -9,7 +9,9 @@ import ReactMarkdown from "react-markdown";
 
 function CreateNote({ history }) {
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [semester, setSemester] = useState("");
+  const [credits, setCredits] = useState("");
+  const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
   const dispatch = useDispatch();
@@ -22,13 +24,15 @@ function CreateNote({ history }) {
   const resetHandler = () => {
     setTitle("");
     setCategory("");
-    setContent("");
+    setSemester("");
+    setCredits("");
+    setDescription("");
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createNoteAction(title, content, category));
-    if (!title || !content || !category) return;
+    dispatch(createNoteAction(title, semester, credits, description, category));
+    if (!title || !semester || !credits || !description || !category) return;
 
     resetHandler();
     history.push("/mynotes");
@@ -53,21 +57,46 @@ function CreateNote({ history }) {
               />
             </Form.Group>
 
-            <Form.Group controlId="content">
-              <Form.Label>Content</Form.Label>
+            <Form.Group controlId="semester">
+              <Form.Label>Semester</Form.Label>
               <Form.Control
-                as="textarea"
-                value={content}
-                placeholder="Enter the content"
-                rows={4}
-                onChange={(e) => setContent(e.target.value)}
+                type="number"
+                min={1}
+                max={8}
+                value={semester}
+                placeholder="Enter the semester number"
+                onChange={(e) => setSemester(e.target.value)}
               />
             </Form.Group>
-            {content && (
+
+            <Form.Group controlId="credits">
+              <Form.Label>Credits</Form.Label>
+              <Form.Control
+                type="number"
+                min={1}
+                max={4}
+                value={credits}
+                placeholder="Enter the credits"
+                onChange={(e) => setCredits(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="description">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                value={description}
+                placeholder="Enter the description"
+                rows={4}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </Form.Group>
+
+            {title && (
               <Card>
                 <Card.Header>Note Preview</Card.Header>
                 <Card.Body>
-                  <ReactMarkdown>{content}</ReactMarkdown>
+                  <ReactMarkdown>{title}</ReactMarkdown>
                 </Card.Body>
               </Card>
             )}

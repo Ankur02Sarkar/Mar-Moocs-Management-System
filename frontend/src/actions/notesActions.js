@@ -48,7 +48,7 @@ export const listNotes = () => async (dispatch, getState) => {
   }
 };
 
-export const createNoteAction = (title, content, category) => async (
+export const createNoteAction = (title, semester, credits, description, category) => async (
   dispatch,
   getState
 ) => {
@@ -70,7 +70,7 @@ export const createNoteAction = (title, content, category) => async (
 
     const { data } = await axios.post(
       `/api/notes/create`,
-      { title, content, category },
+      { title, semester, credits, description, category },
       config
     );
 
@@ -124,7 +124,7 @@ export const deleteNoteAction = (id) => async (dispatch, getState) => {
   }
 };
 
-export const updateNoteAction = (id, title, content, category) => async (
+export const updateNoteAction = (id, title, semester, credits, description, category) => async (
   dispatch,
   getState
 ) => {
@@ -146,7 +146,7 @@ export const updateNoteAction = (id, title, content, category) => async (
 
     const { data } = await axios.put(
       `/api/notes/${id}`,
-      { title, content, category },
+      { title, semester, credits, description, category },
       config
     );
 

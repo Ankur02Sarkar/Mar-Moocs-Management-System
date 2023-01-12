@@ -87,7 +87,7 @@ function MyNotes({ history, search }) {
                       flex: 1,
                       cursor: "pointer",
                       alignSelf: "center",
-                      fontSize: 18,
+                      fontSize: 27,
                     }}
                   >
                     <Accordion.Toggle
@@ -112,11 +112,15 @@ function MyNotes({ history, search }) {
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                   <Card.Body>
-                    <h4>
+                    <h3>
                       <Badge variant="success">
                         Category - {note.category}
                       </Badge>
-                    </h4>
+                    </h3>
+                    <h5>Semester - {note.semester}</h5>
+                    <h5>Credits - {note.credits}</h5>
+                    <h5>Description - {note.description}</h5>
+                    <h5>Certificate -</h5>
                     <blockquote className="blockquote mb-0">
                       <ReactMarkdown>{note.content}</ReactMarkdown>
                       <footer className="blockquote-footer">

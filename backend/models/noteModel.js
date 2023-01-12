@@ -6,7 +6,15 @@ const noteSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    content: {
+    semester: {
+      type: Number,
+      required: true,
+    },
+    credits: {
+      type: Number,
+      required: true,
+    },
+    description: {
       type: String,
       required: true,
     },

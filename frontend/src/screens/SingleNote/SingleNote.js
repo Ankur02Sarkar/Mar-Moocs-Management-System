@@ -10,7 +10,9 @@ import ReactMarkdown from "react-markdown";
 
 function SingleNote({ match, history }) {
   const [title, setTitle] = useState();
-  const [content, setContent] = useState();
+  const [semester, setSemester] = useState("");
+  const [credits, setCredits] = useState("");
+  const [description, setDescription] = useState("");
   const [category, setCategory] = useState();
   const [date, setDate] = useState("");
 
@@ -34,7 +36,9 @@ function SingleNote({ match, history }) {
       const { data } = await axios.get(`/api/notes/${match.params.id}`);
 
       setTitle(data.title);
-      setContent(data.content);
+      setSemester(data.semester);
+      setCredits(data.credits);
+      setDescription(data.description);
       setCategory(data.category);
       setDate(data.updatedAt);
     };
@@ -45,13 +49,15 @@ function SingleNote({ match, history }) {
   const resetHandler = () => {
     setTitle("");
     setCategory("");
-    setContent("");
+    setSemester("");
+    setCredits("");
+    setDescription("");
   };
 
   const updateHandler = (e) => {
     e.preventDefault();
-    dispatch(updateNoteAction(match.params.id, title, content, category));
-    if (!title || !content || !category) return;
+    dispatch(updateNoteAction(match.params.id, title, semester, credits, description, category));
+    if (!title || !semester || !credits || !description || !category) return;
 
     resetHandler();
     history.push("/mynotes");
@@ -72,27 +78,51 @@ function SingleNote({ match, history }) {
               <Form.Label>Title</Form.Label>
               <Form.Control
                 type="title"
-                placeholder="Enter the title"
                 value={title}
+                placeholder="Enter the title"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
 
-            <Form.Group controlId="content">
-              <Form.Label>Content</Form.Label>
+            <Form.Group controlId="semester">
+              <Form.Label>Semester</Form.Label>
               <Form.Control
-                as="textarea"
-                placeholder="Enter the content"
-                rows={4}
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
+                type="number"
+                min={1}
+                max={8}
+                value={semester}
+                placeholder="Enter the semester number"
+                onChange={(e) => setSemester(e.target.value)}
               />
             </Form.Group>
-            {content && (
+
+            <Form.Group controlId="credits">
+              <Form.Label>Credits</Form.Label>
+              <Form.Control
+                type="number"
+                min={1}
+                max={4}
+                value={credits}
+                placeholder="Enter the credits"
+                onChange={(e) => setCredits(e.target.value)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="description">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                value={description}
+                placeholder="Enter the description"
+                rows={4}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </Form.Group>
+            {title && (
               <Card>
                 <Card.Header>Note Preview</Card.Header>
                 <Card.Body>
-                  <ReactMarkdown>{content}</ReactMarkdown>
+                  <ReactMarkdown>{title}</ReactMarkdown>
                 </Card.Body>
               </Card>
             )}
