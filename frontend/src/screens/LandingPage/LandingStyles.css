@@ -1,3 +1,6 @@
+body{
+  background: linear-gradient(120deg, #de4677, #de7548);
+}
 .title {
   font-size: 95px;
 }
@@ -13,7 +16,7 @@
   min-height: 93vh;
   display: flex;
   align-items: center;
-  background-image: url("../../background1.jpg");
+  /* background-image: url("../../background1.jpg"); */
   background-position: center;
   background-size: cover;
 }
