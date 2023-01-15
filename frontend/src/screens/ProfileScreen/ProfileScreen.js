@@ -38,7 +38,7 @@ const ProfileScreen = ({ location, history }) => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "marMoocs");
+      data.append("upload_preset", "credArchive");
       data.append("cloud_name", "ankur02sarkar");
       fetch("https://api.cloudinary.com/v1_1/ankur02sarkar/image/upload", {
         method: "post",

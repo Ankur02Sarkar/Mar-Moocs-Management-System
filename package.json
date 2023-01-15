@@ -1,7 +1,7 @@
 {
-  "name": "notezipper",
-  "version": "1.0.0",
-  "description": "Notes Taking App",
+  "name": "credential-archive",
+  "version": "3.0.0",
+  "description": "MAR MOOCs Credential Manager",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
     "data:import": "node backend/seeder",
     "data:destroy": "node backend/seeder -d"
   },
-  "author": "Piyush Agarwal",
+  "author": "Ankur Sarkar",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
