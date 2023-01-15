@@ -22,9 +22,21 @@ function Header({ setSearch }) {
   };
 
   useEffect(() => {}, [userInfo]);
-
+  const profilepic = localStorage.getItem("profilepic");
   return (
-    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="primary"
+      variant="dark"
+      style={{
+        border: "none",
+        position: "fixed",
+        width: "100%",
+        zIndex: "1",
+        background: "linear-gradient(120deg, #de4677, #de7548)",
+      }}
+    >
       <Container>
         <Navbar.Brand href="/">Credential Archive</Navbar.Brand>
 
@@ -42,7 +54,7 @@ function Header({ setSearch }) {
               </Form>
             )}
           </Nav>
-          <Nav>
+          <Nav className="xyz">
             {userInfo ? (
               <>
                 <Nav.Link href="/mynotes">My Notes</Nav.Link>
@@ -51,13 +63,13 @@ function Header({ setSearch }) {
                   id="collasible-nav-dropdown"
                 >
                   <NavDropdown.Item href="/profile">
-                    {/* <img
+                    <img
                       alt=""
                       src={`${userInfo.pic}`}
-                      width="25"
-                      height="25"
-                      style={{ marginRight: 10 }}
-                    /> */}
+                      width="37"
+                      height="37"
+                      style={{ marginRight: 10, borderRadius: "50%" }}
+                    />
                     My Profile
                   </NavDropdown.Item>
 
@@ -66,6 +78,16 @@ function Header({ setSearch }) {
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
+                <Nav.Item href="/mynotes">
+                  <img
+                    src={profilepic}
+                    style={{
+                      height: "37px",
+                      width: "37px",
+                      borderRadius: "50%",
+                    }}
+                  />
+                </Nav.Item>
               </>
             ) : (
               <Nav.Link href="/login">Login</Nav.Link>

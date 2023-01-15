@@ -54,13 +54,12 @@ function MyNotes({ history, search }) {
       dispatch(deleteNoteAction(id));
     }
   };
-
   return (
     <MainScreen title={`Welcome Back ${userInfo && userInfo.name}..`}>
       {console.log(notes)}
       <Link to="/createnote">
         <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
-          Create new Note
+          Add New Certificate
         </Button>
       </Link>
       {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}

@@ -137,6 +137,9 @@ const ProfileScreen = ({ location, history }) => {
               justifyContent: "center",
             }}
           >
+            {console.log("pic is --", pic)}
+            {localStorage.setItem("profilepic", pic)}
+
             <img src={pic} alt={name} className="profilePic" />
           </Col>
         </Row>
